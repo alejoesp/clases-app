@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#145c5a">
+    <title>Clases de Mama</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css?v=8">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Cuaderno digital</p>
+          <h1>Clases de Mama</h1>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" id="resetButton" type="button" aria-label="Vaciar datos" title="Vaciar datos">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15M10 11v6M14 11v6"/></svg>
+          </button>
+          <button class="icon-button" id="exportButton" type="button" aria-label="Exportar datos" title="Exportar datos">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="summary-grid" aria-label="Resumen">
+          <article>
+            <span>Hoy</span>
+            <strong id="todayCount">0</strong>
+            <small>clases</small>
+          </article>
+          <article>
+            <span>A cobrar</span>
+            <strong id="debtTotal">$0</strong>
+            <small>estimado</small>
+          </article>
+          <article>
+            <span>Mes</span>
+            <strong id="monthTotal">$0</strong>
+            <small>cobrado</small>
+          </article>
+        </section>
+
+        <section class="quick-actions" aria-label="Accesos rapidos">
+          <button type="button" data-open="student">Nuevo alumno</button>
+          <button type="button" data-open="class">Registrar clase</button>
+          <button type="button" data-open="payment">Cargar pago</button>
+          <button type="button" data-open="schedule">Agregar horario</button>
+        </section>
+
+        <nav class="tabs" aria-label="Secciones">
+          <button class="tab is-active" type="button" data-view="today">Hoy</button>
+          <button class="tab" type="button" data-view="students">Alumnos</button>
+          <button class="tab" type="button" data-view="schedule">Agenda</button>
+          <button class="tab" type="button" data-view="calendar">Calendario</button>
+          <button class="tab" type="button" data-view="money">Caja</button>
+          <button class="tab" type="button" data-view="manage">Gestion</button>
+        </nav>
+
+        <section class="view is-active" id="view-today">
+          <div class="section-head">
+            <div>
+              <h2>Hoy y asistencia</h2>
+              <p><span id="todayDate"></span>. Marca si vino, no vino o se reprogramo.</p>
+            </div>
+            <button class="primary-button" type="button" data-open="class">Registrar clase</button>
+          </div>
+          <p class="tutorial">Aca se controla el dia real: si vino descuenta horas; si no vino o se reprogramo, queda anotado sin descontar.</p>
+          <div id="todayList" class="stack"></div>
+        </section>
+
+        <section class="view" id="view-students">
+          <div class="section-head">
+            <div>
+              <h2>Alumnos</h2>
+              <p>Datos fijos: dias, horarios, horas disponibles y notas.</p>
+            </div>
+            <button class="primary-button" type="button" data-open="student">Nuevo alumno</button>
+          </div>
+          <p class="tutorial">Aca van los datos estables de cada alumno: valor por hora, saldo, horarios habituales y ultimos registros.</p>
+          <label class="search-box">
+            <span>Buscar</span>
+            <input id="studentSearch" type="search" placeholder="Nombre o notas">
+          </label>
+          <div id="studentList" class="stack"></div>
+        </section>
+
+        <section class="view" id="view-schedule">
+          <div class="section-head">
+            <div>
+              <h2>Agenda semanal</h2>
+              <p>Horarios habituales. Esto no registra asistencia, solo organiza la semana.</p>
+            </div>
+            <button class="primary-button" type="button" data-open="schedule">Agregar horario</button>
+          </div>
+          <p class="tutorial">Aca se cargan los dias y horarios habituales. Si solo cambia una clase puntual, registralo como reprogramada en Hoy.</p>
+          <div id="scheduleList" class="week-list"></div>
+        </section>
+
+        <section class="view" id="view-money">
+          <div class="section-head">
+            <div>
+              <h2>Caja</h2>
+              <p>Pagos, combos de horas y pendientes.</p>
+            </div>
+            <button class="primary-button" type="button" data-open="payment">Cargar pago</button>
+          </div>
+          <p class="tutorial">Aca se cargan pagos y combos. Cada pago suma horas disponibles; borrar un pago las resta.</p>
+          <div class="money-actions">
+            <button class="secondary-button" type="button" data-open="payment">Pago / paquete</button>
+            <button class="secondary-button" type="button" data-open="combo">Nuevo combo</button>
+            <button class="secondary-button" type="button" data-open="class">Clase suelta</button>
+          </div>
+          <div id="comboList" class="combo-list"></div>
+          <div id="moneyList" class="stack"></div>
+        </section>
+
+        <section class="view" id="view-calendar">
+          <div class="section-head">
+            <div>
+              <h2>Calendario</h2>
+              <p>Clases fijas y registros reales de asistencia.</p>
+            </div>
+            <div class="calendar-controls">
+              <button class="icon-button" id="prevMonth" type="button" aria-label="Mes anterior" title="Mes anterior">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              <button class="icon-button" id="nextMonth" type="button" aria-label="Mes siguiente" title="Mes siguiente">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+          <p class="tutorial">Aca se ve el mes completo: horarios fijos, asistencias reales y clases movidas a otra fecha.</p>
+          <h3 id="calendarTitle" class="calendar-title"></h3>
+          <div id="calendarGrid" class="calendar-grid"></div>
+        </section>
+
+        <section class="view" id="view-manage">
+          <div class="section-head">
+            <div>
+              <h2>Gestion</h2>
+              <p>Revisa, edita y elimina datos desde un solo lugar.</p>
+            </div>
+            <button class="primary-button" type="button" data-open="student">Nuevo alumno</button>
+          </div>
+          <p class="tutorial">Esta vista es para mantenimiento: corregir datos, borrar registros viejos y revisar que todo este cargado como corresponde.</p>
+          <div id="managePanel" class="manage-panel"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal" id="studentModal" aria-hidden="true">
+      <form class="modal-panel" id="studentForm">
+        <div class="modal-head">
+          <h2>Alumno</h2>
+          <button class="icon-button" type="button" data-close aria-label="Cerrar" title="Cerrar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <input type="hidden" name="id">
+        <label>Nombre<input name="name" required autocomplete="name"></label>
+        <label>Valor por hora<input name="rate" type="number" min="0" step="100" placeholder="Ej: 5000"></label>
+        <label>Notas<textarea name="notes" rows="3" placeholder="Materia, colegio, observaciones"></textarea></label>
+        <button class="primary-button full" type="submit">Guardar alumno</button>
+      </form>
+    </div>
+
+    <div class="modal" id="scheduleModal" aria-hidden="true">
+      <form class="modal-panel" id="scheduleForm">
+        <div class="modal-head">
+          <h2>Horario fijo</h2>
+          <button class="icon-button" type="button" data-close aria-label="Cerrar" title="Cerrar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <label>Alumno<select name="studentId" required></select></label>
+        <label>Dia<select name="day" required></select></label>
+        <label>Hora<input name="time" type="time" required></label>
+        <label>Duracion<input name="duration" type="number" min="0.5" step="0.5" value="1" required></label>
+        <button class="primary-button full" type="submit">Guardar horario</button>
+      </form>
+    </div>
+
+    <div class="modal" id="classModal" aria-hidden="true">
+      <form class="modal-panel" id="classForm">
+        <div class="modal-head">
+          <h2>Registrar clase</h2>
+          <button class="icon-button" type="button" data-close aria-label="Cerrar" title="Cerrar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <label>Alumno<select name="studentId" required></select></label>
+        <label>Fecha<input name="date" type="date" required></label>
+        <label>Horas usadas<input name="hours" type="number" min="0.5" step="0.5" value="1" required></label>
+        <label>Estado<select name="status"><option value="done">Vino</option><option value="missed">No vino</option><option value="moved">Reprogramada</option></select></label>
+        <div class="form-grid">
+          <label>Nueva fecha<input name="movedDate" type="date"></label>
+          <label>Nueva hora<input name="movedTime" type="time"></label>
+        </div>
+        <label>Notas<textarea name="notes" rows="2" placeholder="Tema visto, motivo del cambio, etc."></textarea></label>
+        <button class="primary-button full" type="submit">Guardar clase</button>
+      </form>
+    </div>
+
+    <div class="modal" id="paymentModal" aria-hidden="true">
+      <form class="modal-panel" id="paymentForm">
+        <div class="modal-head">
+          <h2>Cargar pago</h2>
+          <button class="icon-button" type="button" data-close aria-label="Cerrar" title="Cerrar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <label>Alumno<select name="studentId" required></select></label>
+        <label>Combo<select name="comboId"></select></label>
+        <label>Fecha<input name="date" type="date" required></label>
+        <label>Horas compradas<input name="hours" type="number" min="0" step="0.5" value="1"></label>
+        <label>Monto pagado<input name="amount" type="number" min="0" step="100" placeholder="Ej: 12000"></label>
+        <label>Medio<select name="method"><option value="transfer">Transferencia</option><option value="cash">Efectivo</option></select></label>
+        <label>Notas<textarea name="notes" rows="2" placeholder="Combo, comprobante, comentario"></textarea></label>
+        <button class="primary-button full" type="submit">Guardar pago</button>
+      </form>
+    </div>
+
+    <div class="modal" id="comboModal" aria-hidden="true">
+      <form class="modal-panel" id="comboForm">
+        <div class="modal-head">
+          <h2>Combo de horas</h2>
+          <button class="icon-button" type="button" data-close aria-label="Cerrar" title="Cerrar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <input type="hidden" name="id">
+        <label>Nombre<input name="name" required placeholder="Ej: Combo 4 horas"></label>
+        <label>Horas<input name="hours" type="number" min="0.5" step="0.5" required></label>
+        <label>Precio<input name="price" type="number" min="0" step="100" required></label>
+        <button class="primary-button full" type="submit">Guardar combo</button>
+      </form>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="app.js?v=8"></script>
+  </body>
+</html>

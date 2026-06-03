@@ -1,0 +1,17 @@
+{
+  "name": "Clases de Mama",
+  "short_name": "Clases",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f5f4ef",
+  "theme_color": "#145c5a",
+  "description": "Agenda privada para alumnos, horarios, pagos y horas disponibles.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
