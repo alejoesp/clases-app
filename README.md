@@ -1,19 +1,20 @@
-# Clases App
-
 <p align="center">
-  <img src="icon.svg" alt="Clases App" width="110">
+  <img src="assets/portfolio-banner.svg" alt="Clases App — Offline First PWA" width="100%">
 </p>
 
 <p align="center">
-  Aplicación web progresiva para organizar alumnos, horarios, asistencias, pagos y paquetes de horas desde una interfaz simple y offline-first.
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+  <img alt="PWA" src="https://img.shields.io/badge/PWA-Installable-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white">
+  <img alt="LocalStorage" src="https://img.shields.io/badge/LocalStorage-Offline--First-1F6FEB?style=for-the-badge">
+  <img alt="Node.js" src="https://img.shields.io/badge/Node.js-Local%20Server-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
 </p>
 
 <p align="center">
-  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?logo=javascript&logoColor=black">
-  <img alt="HTML5" src="https://img.shields.io/badge/HTML5-Interface-E34F26?logo=html5&logoColor=white">
-  <img alt="CSS3" src="https://img.shields.io/badge/CSS3-Responsive-1572B6?logo=css3&logoColor=white">
-  <img alt="PWA" src="https://img.shields.io/badge/PWA-Installable-5A0FC8?logo=pwa&logoColor=white">
-  <img alt="Node.js" src="https://img.shields.io/badge/Node.js-Local%20Server-339933?logo=nodedotjs&logoColor=white">
+  <strong>Education Tech · Offline First · PWA · Vanilla JavaScript</strong>
+</p>
+
+<p align="center">
+  <a href="docs/ARCHITECTURE.md">Arquitectura técnica</a>
 </p>
 
 ## Descripción
@@ -96,6 +97,7 @@ Cada modificación actualiza el estado y luego lo persiste en `localStorage`.
 
 ```text
 clases-app/
+├── assets/                # Recursos de presentación del portfolio
 ├── index.html             # Estructura principal de la interfaz
 ├── app.js                 # Estado, lógica y renderizado
 ├── styles.css             # Diseño responsive
@@ -168,7 +170,7 @@ El proyecto evita frameworks para mantener una arquitectura simple y transparent
 
 ## Estado del proyecto
 
-La aplicación es un **prototipo funcional de gestión educativa** y esta rama organiza el proyecto para presentarlo como parte de un portfolio de desarrollo web.
+La aplicación es un **prototipo funcional de gestión educativa** y está documentada como parte de un portfolio de desarrollo web.
 
 ## Documentación técnica
 
