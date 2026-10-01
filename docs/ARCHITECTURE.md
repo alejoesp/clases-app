@@ -1,49 +1,56 @@
-# Arquitectura técnica — Clases App
+# Cómo está organizada Clases App
 
-## Visión general
+Clases App funciona completamente en el navegador. No hay una API ni una base de datos externa: la información se guarda en LocalStorage.
 
-Clases App es una PWA sin backend externo. Toda la lógica se ejecuta en el navegador y los datos se guardan en LocalStorage.
-
-La aplicación adopta un enfoque simple de estado centralizado:
+## Flujo general
 
 ```text
-UI → eventos → estado → persistencia → render
+Interfaz
+   │
+   ▼
+eventos de usuario
+   │
+   ▼
+app.js
+   │
+   ├── modifica el estado
+   ├── guarda en LocalStorage
+   └── vuelve a dibujar la interfaz
 ```
 
-## Componentes principales
+## `index.html`
 
-### `index.html`
+Tiene la estructura de las distintas pantallas y los formularios:
 
-Define:
-- cabecera;
-- resumen diario;
-- navegación por secciones;
-- formularios modales;
+- resumen del día;
+- alumnos;
+- agenda;
 - calendario;
+- caja;
 - gestión;
-- contenedores que luego completa JavaScript.
+- modales para cargar o editar información.
 
-### `app.js`
+La mayor parte del contenido dinámico se completa después desde JavaScript.
 
-Es el núcleo funcional del proyecto.
+## `app.js`
 
-Responsabilidades:
-- cargar y guardar estado;
-- gestionar alumnos;
-- gestionar horarios;
-- registrar clases;
+Acá está casi toda la lógica de la aplicación.
+
+Se ocupa de:
+- cargar y guardar datos;
+- crear y editar alumnos;
+- registrar horarios;
+- guardar asistencias y reprogramaciones;
 - registrar pagos;
-- gestionar combos;
+- manejar combos de horas;
 - calcular saldos;
-- renderizar vistas;
-- filtrar información;
-- administrar calendario;
-- exportar datos;
-- vincular eventos dinámicos.
+- armar el calendario;
+- actualizar las distintas vistas;
+- exportar información.
 
-## Estado
+## Datos
 
-La aplicación utiliza una estructura semejante a:
+El estado principal tiene cinco grupos:
 
 ```js
 {
@@ -55,75 +62,35 @@ La aplicación utiliza una estructura semejante a:
 }
 ```
 
-El estado se serializa como JSON en LocalStorage.
+Cuando cambia algo, el estado se convierte a JSON y se guarda en LocalStorage.
 
-## Flujo de actualización
-
-```mermaid
-flowchart LR
-    A[Interacción del usuario] --> B[Event listener]
-    B --> C[Actualización de state]
-    C --> D[saveState]
-    D --> E[(LocalStorage)]
-    C --> F[render]
-    F --> G[DOM actualizado]
-```
+Eso permite usar la app sin servidor, aunque también significa que los datos quedan ligados al navegador donde se cargaron.
 
 ## PWA
 
-### Manifest
+`manifest.webmanifest` contiene los datos necesarios para instalar la aplicación.
 
-`manifest.webmanifest` define:
-- nombre;
-- nombre corto;
-- colores;
-- modo standalone;
-- icono.
+`sw.js` se ocupa de guardar en caché los archivos principales:
+- `index.html`
+- `styles.css`
+- `app.js`
+- `manifest.webmanifest`
+- `icon.svg`
 
-### Service Worker
-
-`sw.js`:
-- crea una caché versionada;
-- almacena recursos esenciales;
-- limpia cachés antiguas;
-- responde primero desde caché cuando existe el recurso.
+Cuando cambia la versión de la caché, el Service Worker elimina las anteriores.
 
 ## Servidor local
 
-`server.mjs` implementa un servidor HTTP con módulos nativos de Node.js.
+`server.mjs` es solamente un servidor HTTP pequeño para levantar el proyecto de forma local.
 
-No usa Express ni otras dependencias.
+Está hecho con módulos nativos de Node.js, así que no hace falta instalar Express ni otras dependencias.
 
-## Fortalezas técnicas
+## Cosas a tener en cuenta
 
-- cero dependencias de runtime;
-- APIs nativas del navegador;
-- PWA instalable;
-- persistencia local;
-- interfaz responsive;
-- separación entre estructura, estilos y lógica;
-- arquitectura fácil de desplegar.
+La aplicación está hecha a propósito sin backend. Para el uso actual alcanza, pero por esa misma razón:
+- no sincroniza datos entre dispositivos;
+- no tiene cuentas de usuario;
+- si se borran los datos del navegador se puede perder la información;
+- `app.js` terminó concentrando bastante lógica en un solo archivo.
 
-## Limitaciones actuales
-
-- LocalStorage no sincroniza entre dispositivos;
-- no existe autenticación;
-- los datos dependen del navegador;
-- `app.js` concentra muchas responsabilidades.
-
-## Evolución sugerida
-
-Una refactorización futura podría dividir el código en módulos:
-
-```text
-src/
-├── state/
-├── students/
-├── schedule/
-├── attendance/
-├── payments/
-├── calendar/
-└── ui/
-```
-
-Una segunda etapa podría agregar backend, autenticación y base de datos.
+Si el proyecto creciera, lo primero que separaría serían alumnos, pagos, agenda y calendario en módulos distintos.
