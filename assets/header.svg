@@ -1,0 +1,28 @@
+<svg width="1200" height="360" viewBox="0 0 1200 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="360" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#091018"/>
+    <stop offset=".56" stop-color="#12252D"/>
+    <stop offset="1" stop-color="#17463F"/>
+  </linearGradient>
+  <linearGradient id="a" x1="930" y1="70" x2="1080" y2="280" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#70F2D3"/>
+    <stop offset="1" stop-color="#7BDBFF"/>
+  </linearGradient>
+</defs>
+<rect width="1200" height="360" rx="28" fill="url(#bg)"/>
+<g opacity=".09" stroke="#BAFFF1">
+  <path d="M0 60H1200M0 120H1200M0 180H1200M0 240H1200M0 300H1200"/>
+  <path d="M120 0V360M240 0V360M360 0V360M480 0V360M600 0V360M720 0V360M840 0V360M960 0V360M1080 0V360"/>
+</g>
+<text x="82" y="145" fill="white" font-size="62" font-family="Arial, Helvetica, sans-serif" font-weight="800">Clases App</text>
+<text x="84" y="194" fill="#C8DDDA" font-size="25" font-family="Arial, Helvetica, sans-serif">Alumnos, horarios, clases y pagos en un solo lugar</text>
+<text x="84" y="244" fill="#77ECD2" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">JavaScript · PWA · LocalStorage · Node.js</text>
+<g transform="translate(915 74)">
+  <rect width="190" height="205" rx="22" stroke="url(#a)" stroke-width="3"/>
+  <rect x="28" y="32" width="134" height="18" rx="9" fill="#6FF0D4" opacity=".22"/>
+  <rect x="28" y="72" width="60" height="60" rx="12" stroke="#73EFD4" stroke-width="3"/>
+  <rect x="102" y="72" width="60" height="60" rx="12" stroke="#7CDFFF" stroke-width="3"/>
+  <rect x="28" y="150" width="134" height="18" rx="9" fill="#80DFFF" opacity=".2"/>
+</g>
+</svg>
