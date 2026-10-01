@@ -73,7 +73,9 @@ Cada vez que se agrega o modifica algo, el estado vuelve a guardarse en LocalSto
 
 No usa frameworks ni dependencias externas para la lógica principal.
 
-## Archivos principales
+
+<details>
+<summary><strong>Ver estructura de archivos</strong></summary>
 
 ```text
 clases-app/
@@ -89,6 +91,8 @@ clases-app/
 └── docs/
     └── ARCHITECTURE.md
 ```
+
+</details>
 
 ## Ejecutarla
 
