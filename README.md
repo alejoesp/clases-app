@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/portfolio-banner.svg" alt="Clases App" width="100%">
+  <img src="assets/header.svg" alt="Clases App" width="100%">
 </p>
 
 <p align="center">
