@@ -1,0 +1,14 @@
+{
+  "name": "clases-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PWA para gestión de alumnos, clases, horarios, pagos y paquetes de horas.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
