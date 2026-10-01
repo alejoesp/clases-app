@@ -1,0 +1,36 @@
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="420" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#0A1018"/>
+    <stop offset="0.5" stop-color="#12222C"/>
+    <stop offset="1" stop-color="#153D3C"/>
+  </linearGradient>
+  <linearGradient id="accent" x1="900" y1="100" x2="1100" y2="320" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#54FFD5"/>
+    <stop offset="1" stop-color="#7DE3FF"/>
+  </linearGradient>
+</defs>
+<rect width="1200" height="420" rx="28" fill="url(#bg)"/>
+<g opacity=".12" stroke="#B7FFF0">
+  <path d="M0 70H1200M0 140H1200M0 210H1200M0 280H1200M0 350H1200"/>
+  <path d="M100 0V420M200 0V420M300 0V420M400 0V420M500 0V420M600 0V420M700 0V420M800 0V420M900 0V420M1000 0V420M1100 0V420"/>
+</g>
+<rect x="84" y="70" width="174" height="34" rx="17" fill="#153832" stroke="#3A7E73"/>
+<text x="171" y="92" text-anchor="middle" fill="#8FFFF0" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="700" letter-spacing="2">FEATURED PROJECT</text>
+<text x="84" y="180" fill="white" font-size="62" font-family="Arial, Helvetica, sans-serif" font-weight="800">Clases App</text>
+<text x="84" y="226" fill="#C2D9D8" font-size="25" font-family="Arial, Helvetica, sans-serif">Offline‑First PWA • Class & Payment Management</text>
+<rect x="84" y="270" width="138" height="40" rx="20" fill="#173830" stroke="#34776A"/>
+<text x="153" y="296" text-anchor="middle" fill="#DDFFF7" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">JavaScript</text>
+<rect x="234" y="270" width="104" height="40" rx="20" fill="#173830" stroke="#34776A"/>
+<text x="286" y="296" text-anchor="middle" fill="#DDFFF7" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">PWA</text>
+<rect x="350" y="270" width="132" height="40" rx="20" fill="#173830" stroke="#34776A"/>
+<text x="416" y="296" text-anchor="middle" fill="#DDFFF7" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">LocalStorage</text>
+<rect x="494" y="270" width="112" height="40" rx="20" fill="#173830" stroke="#34776A"/>
+<text x="550" y="296" text-anchor="middle" fill="#DDFFF7" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">Node.js</text>
+<text x="84" y="357" fill="#70F2D5" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="700" letter-spacing="1.2">STUDENTS • SCHEDULES • ATTENDANCE • PAYMENTS</text>
+<rect x="913" y="106" width="210" height="214" rx="24" stroke="url(#accent)" stroke-width="3"/>
+<rect x="943" y="139" width="150" height="22" rx="11" fill="#68FFE0" opacity=".22"/>
+<rect x="943" y="180" width="70" height="70" rx="14" stroke="#6FFFE0" stroke-width="3"/>
+<rect x="1023" y="180" width="70" height="70" rx="14" stroke="#85E5FF" stroke-width="3"/>
+<rect x="943" y="267" width="150" height="20" rx="10" fill="#89E9FF" opacity=".2"/>
+</svg>
