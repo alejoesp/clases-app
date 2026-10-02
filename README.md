@@ -9,6 +9,14 @@
   <img alt="Node.js" src="https://img.shields.io/badge/Node.js-Servidor%20local-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
 </p>
 
+<p align="center">
+  <a href="#qué-es">Qué es</a> ·
+  <a href="#qué-permite-hacer">Funciones</a> ·
+  <a href="#cómo-está-armada">Cómo está armada</a> ·
+  <a href="#ejecutarla">Ejecutarla</a> ·
+  <a href="docs/ARCHITECTURE.md">Arquitectura</a>
+</p>
+
 ## Qué es
 
 Clases App es una aplicación que hice para tener en un solo lugar el control de **alumnos, horarios, clases y pagos**.
@@ -112,11 +120,14 @@ http://127.0.0.1:4173
 
 No hace falta instalar paquetes porque `server.mjs` usa módulos nativos de Node.js.
 
-## Datos y funcionamiento offline
+<details>
+<summary><strong>Datos y funcionamiento offline</strong></summary>
 
 Los datos se guardan en el navegador. Eso hace que la app sea simple y rápida de usar, pero también significa que no hay sincronización automática entre distintos dispositivos.
 
 El Service Worker guarda los archivos principales para que la aplicación pueda seguir cargando aunque no haya conexión en ese momento.
+
+</details>
 
 ## Documentación
 
