@@ -3,10 +3,10 @@
 </p>
 
 <p align="center">
-  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-  <img alt="PWA" src="https://img.shields.io/badge/PWA-Installable-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white">
-  <img alt="LocalStorage" src="https://img.shields.io/badge/LocalStorage-Datos%20locales-1F6FEB?style=for-the-badge">
-  <img alt="Node.js" src="https://img.shields.io/badge/Node.js-Servidor%20local-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?style=flat-square&logo=javascript&logoColor=black">
+  <img alt="PWA" src="https://img.shields.io/badge/PWA-Installable-5A0FC8?style=flat-square&logo=pwa&logoColor=white">
+  <img alt="LocalStorage" src="https://img.shields.io/badge/LocalStorage-Datos%20locales-1F6FEB?style=flat-square">
+  <img alt="Node.js" src="https://img.shields.io/badge/Node.js-Servidor%20local-339933?style=flat-square&logo=nodedotjs&logoColor=white">
 </p>
 
 <p align="center">
