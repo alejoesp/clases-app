@@ -4,42 +4,42 @@
 
 <p align="center">
   <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?style=flat-square&logo=javascript&logoColor=black">
-  <img alt="PWA" src="https://img.shields.io/badge/PWA-Installable-5A0FC8?style=flat-square&logo=pwa&logoColor=white">
+  <img alt="PWA" src="https://img.shields.io/badge/PWA-Instalable-5A0FC8?style=flat-square&logo=pwa&logoColor=white">
   <img alt="LocalStorage" src="https://img.shields.io/badge/LocalStorage-Datos%20locales-1F6FEB?style=flat-square">
   <img alt="Node.js" src="https://img.shields.io/badge/Node.js-Servidor%20local-339933?style=flat-square&logo=nodedotjs&logoColor=white">
 </p>
 
 <p align="center">
-  <a href="#qué-es">Qué es</a> ·
-  <a href="#qué-permite-hacer">Funciones</a> ·
-  <a href="#cómo-está-armada">Cómo está armada</a> ·
+  <a href="#clases-app">Resumen</a> ·
+  <a href="#funciones">Funciones</a> ·
+  <a href="#cómo-está-organizada">Organización</a> ·
+  <a href="#tecnologías">Tecnologías</a> ·
   <a href="#ejecutarla">Ejecutarla</a> ·
   <a href="docs/ARCHITECTURE.md">Arquitectura</a>
 </p>
 
-## Qué es
+## Clases App
 
-Clases App es una aplicación que hice para tener en un solo lugar el control de **alumnos, horarios, clases y pagos**.
+Clases App es una aplicación que hice para llevar en un mismo lugar el seguimiento de **alumnos, horarios, clases y pagos**.
 
-No necesita una base de datos ni un servidor para guardar la información: los datos quedan en el navegador usando LocalStorage. Además se puede instalar como PWA y usa un Service Worker para mantener los archivos principales en caché.
+La aplicación funciona sin backend: guarda la información en el navegador mediante LocalStorage. También puede instalarse como PWA y utiliza un Service Worker para mantener en caché los archivos principales.
 
-## Qué permite hacer
+## Funciones
 
-- crear y editar alumnos;
-- definir el valor por hora;
-- guardar notas de cada alumno;
-- organizar horarios semanales;
-- marcar si una clase se dio, no se dio o se reprogramó;
-- mover una clase a otra fecha y hora;
-- registrar pagos;
-- crear paquetes o combos de horas;
-- controlar cuántas horas le quedan a cada alumno;
-- ver avisos cuando quedan pocas horas;
-- consultar agenda y calendario;
-- revisar movimientos anteriores;
-- exportar los datos.
+- alta y edición de alumnos;
+- valor por hora y notas individuales;
+- organización de horarios semanales;
+- registro de clases dadas, no dadas o reprogramadas;
+- cambio de fecha y hora de una clase;
+- registro de pagos;
+- paquetes o combos de horas;
+- control de horas disponibles por alumno;
+- avisos cuando quedan pocas horas;
+- agenda y calendario;
+- historial de movimientos;
+- exportación de datos.
 
-## Cómo está armada
+## Cómo está organizada
 
 ```mermaid
 flowchart TD
@@ -54,9 +54,9 @@ flowchart TD
     SW[Service Worker] --> CACHE[(Cache)]
 ```
 
-La mayor parte de la lógica está en `app.js`. Ahí se manejan los datos, los formularios, los cálculos y el renderizado de las distintas vistas.
+La lógica principal está concentrada en `app.js`. Desde ahí se manejan formularios, cálculos, cambios de estado y actualización de las distintas vistas.
 
-El estado se guarda con esta estructura:
+Los datos se organizan alrededor de este estado:
 
 ```text
 state
@@ -67,34 +67,34 @@ state
 └── combos
 ```
 
-Cada vez que se agrega o modifica algo, el estado vuelve a guardarse en LocalStorage.
+Cada cambio se vuelve a guardar en LocalStorage, por lo que la aplicación conserva la información en ese navegador sin depender de una base de datos externa.
 
 ## Tecnologías
 
-- HTML
-- CSS
-- JavaScript
-- LocalStorage
-- Service Worker
-- Web App Manifest
-- Node.js para el servidor local
+| Parte | Herramientas |
+| --- | --- |
+| Interfaz | HTML, CSS |
+| Lógica | JavaScript |
+| Persistencia | LocalStorage |
+| Instalación | Web App Manifest |
+| Offline | Service Worker + Cache |
+| Servidor local | Node.js |
 
 No usa frameworks ni dependencias externas para la lógica principal.
 
-
 <details>
-<summary><strong>Ver estructura de archivos</strong></summary>
+<summary><strong>Ver estructura del proyecto</strong></summary>
 
 ```text
 clases-app/
-├── assets/                # Recursos usados en el README
-├── index.html             # Interfaz
-├── app.js                 # Lógica de la aplicación
-├── styles.css             # Estilos
-├── sw.js                  # Service Worker
-├── manifest.webmanifest   # Configuración de la PWA
-├── icon.svg               # Ícono
-├── server.mjs             # Servidor local
+├── assets/
+├── index.html
+├── app.js
+├── styles.css
+├── sw.js
+├── manifest.webmanifest
+├── icon.svg
+├── server.mjs
 ├── package.json
 └── docs/
     └── ARCHITECTURE.md
@@ -112,23 +112,23 @@ cd clases-app
 npm start
 ```
 
-Después se abre en:
+Después se puede abrir en:
 
 ```text
 http://127.0.0.1:4173
 ```
 
-No hace falta instalar paquetes porque `server.mjs` usa módulos nativos de Node.js.
+No hace falta instalar paquetes porque `server.mjs` utiliza módulos nativos de Node.js.
 
 <details>
 <summary><strong>Datos y funcionamiento offline</strong></summary>
 
-Los datos se guardan en el navegador. Eso hace que la app sea simple y rápida de usar, pero también significa que no hay sincronización automática entre distintos dispositivos.
+Los datos quedan guardados en el navegador. Eso simplifica mucho la aplicación, aunque también significa que no hay sincronización automática entre distintos dispositivos.
 
-El Service Worker guarda los archivos principales para que la aplicación pueda seguir cargando aunque no haya conexión en ese momento.
+El Service Worker mantiene en caché los archivos principales para que la interfaz pueda seguir cargando cuando no haya conexión.
 
 </details>
 
 ## Documentación
 
-En [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) está explicada la estructura interna con más detalle.
+En [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) está explicada con más detalle la estructura interna y la forma en que se relacionan las distintas partes de la aplicación.
