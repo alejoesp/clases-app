@@ -1,5 +1,5 @@
 const STORAGE_KEY = "clases-mama-v1";
-const DAYS = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+const DAYS = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 const DEFAULT_RATE = 5000;
 const DEFAULT_COMBOS = [
   { id: "combo-1", name: "Clase suelta", hours: 1, price: 5000 },
@@ -414,7 +414,7 @@ function renderToday() {
           <button type="button" data-quick-class="${item.studentId}" data-hours="${item.duration}">Vino</button>
           <button type="button" data-quick-status="missed" data-student="${item.studentId}" data-hours="${item.duration}">No vino</button>
           <button type="button" data-quick-status="moved" data-student="${item.studentId}" data-hours="${item.duration}">Reprogramada</button>
-          <button type="button" data-open-move="${item.studentId}" data-hours="${item.duration}">Cambiar dia/hora</button>
+          <button type="button" data-open-move="${item.studentId}" data-hours="${item.duration}">Cambiar día/hora</button>
           <button type="button" data-open-payment="${item.studentId}">Pago</button>
         </div>
       </article>
@@ -437,7 +437,7 @@ function renderToday() {
           ${item.movedDate ? `<span class="chip warn">Movida a ${formatShortDate(item.movedDate)}${item.movedTime ? ` ${item.movedTime}` : ""}</span>` : ""}
         </div>
         ${item.notes ? `<p class="meta">${escapeHTML(item.notes)}</p>` : ""}
-        <p class="hint">Este es un registro real de asistencia. Sirve para saber que paso ese dia y calcular horas.</p>
+        <p class="hint">Este es un registro real de asistencia. Sirve para saber qué pasó ese día y calcular horas.</p>
         <div class="card-actions">
           <button class="danger-button" type="button" data-delete-class="${item.id}">Borrar registro</button>
         </div>
@@ -475,7 +475,7 @@ function renderStudents() {
         </div>
         <div class="chip-row">
           <span class="chip">Hora ${money(getStudentRate(student.id))}</span>
-          <span class="chip ${debt ? "bad" : "ok"}">${debt ? `Debe ${money(debt)}` : "Al dia"}</span>
+          <span class="chip ${debt ? "bad" : "ok"}">${debt ? `Debe ${money(debt)}` : "Al día"}</span>
           <span class="chip ${balance <= 0 ? "bad" : balance <= 1 ? "warn" : "ok"}">${balance <= 0 ? "Necesita cargar horas" : `Le quedan ${formatHours(balance)}`}</span>
           <span class="chip">${lastClass ? `Ultima ${formatShortDate(lastClass.date)}` : "Sin clases"}</span>
         </div>
@@ -486,7 +486,7 @@ function renderStudents() {
         <p class="hint">Esta ficha resume al alumno: saldo de horas, horarios habituales y ultimos movimientos.</p>
         ${recentRecords.length ? `
           <div class="mini-history">
-            <strong>Ultimos registros</strong>
+            <strong>Últimos registros</strong>
             ${recentRecords.map((record) => `
               <div class="mini-history-row">
                 <span>${formatShortDate(record.date)} - ${statusText(record.status)} - ${STATUS_META[record.status]?.balance ? formatHours(record.hours) : "no descuenta"}${record.movedDate ? ` - movida a ${formatShortDate(record.movedDate)}${record.movedTime ? ` ${record.movedTime}` : ""}` : ""}</span>
@@ -504,7 +504,7 @@ function renderStudents() {
         </div>
       </article>
     `;
-  }).join("") || empty("Todavia no hay alumnos cargados. Empieza con Nuevo alumno, despues agrega horarios y pagos.");
+  }).join("") || empty("Todavía no hay alumnos cargados. Empezá con Nuevo alumno; después agregá horarios y pagos.");
 
   bindDynamicActions(els.studentList);
 }
@@ -531,7 +531,7 @@ function renderSchedule() {
                 <button class="danger-button" type="button" data-delete-schedule="${item.id}">Borrar</button>
               </div>
             `;
-          }).join("") || `<p class="empty">Sin horarios. Agrega el dia y hora habitual de cada alumno.</p>`}
+          }).join("") || `<p class="empty">Sin horarios. Agregá el día y la hora habitual de cada alumno.</p>`}
         </div>
       </section>
     `;
@@ -586,7 +586,7 @@ function renderCombos() {
       <article class="combo-card">
         <strong>${escapeHTML(combo.name)}</strong>
         <span class="meta">${formatHours(combo.hours)} - ${money(combo.price)}</span>
-        <small>Al elegirlo en un pago completa horas y precio automaticamente.</small>
+        <small>Al elegirlo en un pago se completan las horas y el precio automáticamente.</small>
         <button type="button" data-edit-combo="${combo.id}">Editar</button>
         <button class="danger-button" type="button" data-delete-combo="${combo.id}">Borrar</button>
       </article>
@@ -650,7 +650,7 @@ function renderMoney() {
   els.moneyList.innerHTML = `
     ${debtsHTML || empty("No hay alertas. Cuando un alumno tenga pocas horas o deba, aparece aca.")}
     <h2 style="margin: 8px 0 0;">Pagos recientes</h2>
-    ${paymentsHTML || empty("Todavia no hay pagos cargados. Usa Pago / paquete para sumar horas.")}
+    ${paymentsHTML || empty("Todavía no hay pagos cargados. Usá Pago / paquete para sumar horas.")}
   `;
   bindDynamicActions(els.moneyList);
 }
@@ -738,7 +738,7 @@ function renderManage() {
     ${manageSection("Horarios", "Horarios habituales de la semana.", schedulesHTML)}
     ${manageSection("Registros", "Asistencias reales: vino, no vino o reprogramada.", recordsHTML)}
     ${manageSection("Pagos", "Pagos y paquetes cargados.", paymentsHTML)}
-    ${manageSection("Combos", "Paquetes de horas disponibles para cargar pagos rapido.", combosHTML)}
+    ${manageSection("Combos", "Paquetes de horas disponibles para cargar pagos rápido.", combosHTML)}
   `;
   bindDynamicActions(els.managePanel);
 }
@@ -844,7 +844,7 @@ function bindDynamicActions(root) {
   root.querySelectorAll("[data-delete-student]").forEach((button) => {
     button.addEventListener("click", () => {
       const student = findStudent(button.dataset.deleteStudent);
-      const ok = window.confirm(`Eliminar a ${student.name} tambien borra sus horarios, pagos y registros. Esta accion no se puede deshacer.`);
+      const ok = window.confirm(`Eliminar a ${student.name} también borra sus horarios, pagos y registros. Esta acción no se puede deshacer.`);
       if (!ok) return;
       state.students = state.students.filter((item) => item.id !== button.dataset.deleteStudent);
       state.schedules = state.schedules.filter((item) => item.studentId !== button.dataset.deleteStudent);
